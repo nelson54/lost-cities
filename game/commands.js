@@ -11,6 +11,7 @@ class Commands {
             game.discardPiles[card.color].push(card);
             return true;
         }
+
         return false;
     }
 
@@ -21,6 +22,8 @@ class Commands {
     static draw (player, game) {
         let card = game.deck.pop();
         player.hand.push(card);
+
+        return true;
     }
 
     /**
@@ -31,6 +34,7 @@ class Commands {
     static drawFromDiscard (color, player, game) {
         let card = game.discardPiles[color].pop();
         player.hand.push(card);
+
         return true;
     }
 
@@ -39,8 +43,13 @@ class Commands {
      * @param {Player} player
      * @param {Game} game
      */
-    static play (card, player, game) {
+    static play (card, player) {
+        if(player.playArea.isPlayValid(card)) {
+            player.playArea.play(card);
+            return true;
+        }
         
+        return false;
     }
 
 }
