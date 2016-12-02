@@ -32,7 +32,7 @@ router.get('/:id', function(req, res) {
 });
 
 router.put('/', function(req, res) {
-    var game = gameRepo.createGame("5841b69cb193b5455b2849a7");
+    var game = gameRepo.createGame(req.user.id);
 
     gameRepo
         .save(game)
