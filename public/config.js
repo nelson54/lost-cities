@@ -7,3 +7,12 @@ angular.module('lost-cities-dashboard', ["ngRoute"])
             controller: "DashboardCtrl as dashboard"
         })
 });
+
+angular.module('lost-cities-profile', ['ngRoute'])
+.config(function($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: '/view/profile',
+            controller: 'ProfileCtrl as profile'
+        });
+});
