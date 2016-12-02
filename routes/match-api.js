@@ -11,5 +11,20 @@ router.get('/', function(req, res, next) {
         });
 });
 
+router.put('/:id', function(req, res, next) {
+    return gameRepo
+        .findOne(req.param('id'))
+        .then((game) => {
+            game.players.push(req.user.id);
+            game.open = false;
+            return game;
+        })
+        .then((game) => {
+            return gameRepo.save(game);
+        })
+        .then((game) => {
+            res.json(game);
+        })
+});
 
 module.exports = router;

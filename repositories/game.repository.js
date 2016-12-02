@@ -10,8 +10,8 @@ module.exports = {
         return game;
     },
 
-    findOne: function(seed) {
-        return GameModel.findById(seed);
+    findOne: function(id) {
+        return GameModel.findById(id);
     },
 
     findAll: function() {
