@@ -10,7 +10,7 @@ module.exports = {
     },
 
     findOne: function(seed) {
-        return GameModel.findOne({'seed': seed});
+        return GameModel.findById(seed);
     },
 
     findAll: function() {

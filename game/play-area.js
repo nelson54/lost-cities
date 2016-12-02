@@ -1,7 +1,7 @@
 let COLORS = require('./colors');
 let PlayStack = require('./play-stack');
 
-class PlayArea {
+module.exports = class PlayArea {
 
     constructor () {
         this.playStacksByColor = buildStackMap();

@@ -1,4 +1,4 @@
-class Commands {
+module.exports = class Commands {
 
     /**
      * @param {Card} card
