@@ -1,5 +1,4 @@
 angular.module('lost-cities-profile')
-    .controller('ProfileCtrl', function () {
+.controller('ProfileCtrl', function () {
         var profile = this;
-    });
-}
+});
