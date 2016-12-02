@@ -24,7 +24,7 @@ var passportConfig = require('./config/passport.js');
 passportConfig(passport);
 
 var index = require('./routes/index');
-var authenticate = require('./routes/authenticate');
+var authenticate = require('./routes/authenticate')(passport);
 
 var app = express();
 
@@ -39,6 +39,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// setup app to use passportjs
+// note: change secure to false for an https site
+app.use(session({
+  secret: 'secret1234',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
 
 //app.use('/', index);
 app.use('/authenticate', authenticate);
