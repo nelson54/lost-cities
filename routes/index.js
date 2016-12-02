@@ -5,28 +5,23 @@ var uuid = require('uuid/v4');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Express' });
-});
-
-router.get('/app', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.redirect('/login');
 });
 
 router.get('/signup', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+  res.render('signup', { title: 'Create an account' });
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+  if (req.isAuthenticated()) {
+    res.redirect('/profile');
+  }
+  res.render('login', { title: 'Log in' });
 });
 
-
-// TODO: protected profile page / dashboard
 router.get('/profile', isLoggedIn, function (req, res) {
-  res.render('profile', {name: "TestPlayer"});
+  res.render('profile', {user: req.user});
 });
-
-
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
@@ -36,7 +31,6 @@ function isLoggedIn(req, res, next) {
   }
   // redirect them to the home page otherwise
   res.redirect('/');
-  //return next();
 }
 
 module.exports = router;

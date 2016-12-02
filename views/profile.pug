@@ -1,4 +1,16 @@
-extends layout.pug
+extends layout
 
 block content
- p Welcome to your profile #{name}!
+ div.container
+
+  div.row
+   div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+    h1= title
+
+  div.row
+   div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+    h2.text-success Welcome #{user.local.email}
+    div
+     b.text-uppercase email:
+     span= user.local.email
+    a.btn.btn-warning(href='/authenticate/logout') Log Out
