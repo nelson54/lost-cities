@@ -4,10 +4,16 @@ let _ = require('lodash');
 
 
 module.exports = class Player {
-    
+
+    /**
+     *
+     * @param id
+     * @param hand
+     * @param playArea
+     */
     constructor(id, hand, playArea) {
         this.id = id;
-        this.hand = [];
+        this.hand = hand || [];
         this.playArea = playArea || new PlayArea();
     }
 
