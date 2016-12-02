@@ -32,6 +32,10 @@ class Commands {
      * @param {Game} game
      */
     static drawFromDiscard (color, player, game) {
+        if(game.discardPiles[color].length == 0) {
+            return false;
+        }
+        
         let card = game.discardPiles[color].pop();
         player.hand.push(card);
 

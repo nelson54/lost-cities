@@ -23,10 +23,14 @@ mongoose.connect(configDB.url, function(err) {
 var passportConfig = require('./config/passport.js');
 passportConfig(passport);
 
+var app = express();
+
 var index = require('./routes/index');
 var authenticate = require('./routes/authenticate')(passport);
+var gameApi = require('./routes/game-api');
 
-var app = express();
+app.use('/', index);
+app.use('/api/games', gameApi);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

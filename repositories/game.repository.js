@@ -1,4 +1,4 @@
-GameModel = require('game.model');
+GameModel = require('../models/game.model');
 module.exports = {
 
     createGame: function(seed, playerOneId) {
