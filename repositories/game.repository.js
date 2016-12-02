@@ -1,22 +1,19 @@
 GameModel = require('../models/game.model');
 module.exports = {
 
-    createGame: function(seed, playerOneId) {
+    createGame: function(playerOneId) {
         var game = new GameModel();
         game.start = Date.now();
-        game.seed = seed;
         game.players = [playerOneId];
         return game;
     },
 
     findOne: function(seed) {
-        var game = new GameModel();
-        return game.findOne({'seed': seed});
+        return GameModel.findOne({'seed': seed});
     },
 
     findAll: function() {
-        var game = new GameModel();
-        return game.find();
+        return GameModel.find({});
     },
 
     count: function() {

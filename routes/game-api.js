@@ -19,21 +19,22 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-    let game = req.game;
-
-    res.render('index', { title: 'Express' });
+    gameRepo
+        .findAll()
+        .then( (games) => {
+            req.json({
+                'games': games.map((game) => game._doc)
+            })
+        } );
 });
 
 /* GET home page. */
-router.get('/:id', function(req, res, next) {
-    let game = req.game;
-
-
-    res.render('index', { title: 'Express' });
+router.get('/:id', function(req, res) {
+    res.json(req.game._doc);
 });
 
 router.put('/', function(req, res) {
-    var game = gameRepo.createGame(uuid(), req.user.id);
+    var game = gameRepo.createGame(req.user.id);
 
     gameRepo
         .save(game)
@@ -42,6 +43,6 @@ router.put('/', function(req, res) {
         }).fail((err) => {
             console.log(err);
         })
-});
+}); 
 
 module.exports = router;
