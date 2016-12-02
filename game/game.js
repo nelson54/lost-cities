@@ -6,7 +6,7 @@ module.exports = class Game {
         this.discardPiles = {};
         this.players = {};
         
-        COLORS.forEach((color) => discardPiles[color] = []);
+        COLORS.forEach((color) => this.discardPiles[color] = []);
         players.forEach((player) => this.players[player.id] = players);
     }
     
