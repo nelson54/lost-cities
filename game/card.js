@@ -13,7 +13,7 @@ module.exports = class Card {
 
         cards
             .filter( (card) => !card.isMultiplier )
-            .forEach( (card) => value =+ card.number );
+            .forEach( (card) => value += card.number );
 
         return value * multiplier;
     }
@@ -41,7 +41,7 @@ module.exports = class Card {
 
         return `${this.color}${this.number}`;
     }
-}
+};
 
 function isSorted(cards) {
     var length = cards.length - 1;
