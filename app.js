@@ -26,6 +26,7 @@ passportConfig(passport);
 var index = require('./routes/index');
 var authenticate = require('./routes/authenticate')(passport);
 var gameApi = require('./routes/game-api');
+var matchApi = require('./routes/match-api');
 
 var app = express();
 
@@ -55,7 +56,9 @@ app.use(passport.session());
 app.use(flash());
 
 app.use('/', index);
+
 app.use('/api/games', gameApi);
+app.use('/api/match', matchApi);
 app.use('/authenticate', authenticate);
 
 // catch 404 and forward to error handler

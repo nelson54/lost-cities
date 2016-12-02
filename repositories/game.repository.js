@@ -6,6 +6,7 @@ module.exports = {
         game.start = Date.now();
         game.players = [playerOneId];
         game.currentPlayer = playerOneId;
+        game.open = true;
         return game;
     },
 
@@ -15,6 +16,10 @@ module.exports = {
 
     findAll: function() {
         return GameModel.find({});
+    },
+    
+    findOpenGames: function() {
+        return GameModel.find().where({'open': true})
     },
 
     count: function() {
