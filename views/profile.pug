@@ -9,8 +9,13 @@ block content
 
   div.row
     div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-    h2.text-success Welcome #{user.local.email}
-    div
-      b.text-uppercase email:
-      span= user.local.email
-    a.btn.btn-warning(href='/authenticate/logout') Log Out
+      h2.text-success Welcome #{user.local.email}
+      div
+        b.text-uppercase email:
+        span= user.local.email
+      div
+        a.btn.btn-primary(id='createGameButton') Create Game
+        a.btn.btn-primary(id='joinGameButton') Join Game
+        a.btn.btn-primary(id='dashboardButton') Dashboard
+
+      a.btn.btn-warning(href='/authenticate/logout') Log Out
