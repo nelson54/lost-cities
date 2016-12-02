@@ -6,22 +6,34 @@ module.exports = {
         game.start = Date.now();
         game.seed = seed;
         game.players = [playerOneId];
+        return game;
+    },
+
+    findOne: function(seed) {
+        var game = new GameModel();
+        return game.findOne({'seed': seed});
+    },
+
+    findAll: function() {
+        var game = new GameModel();
+        return game.find();
+    },
+
+    count: function() {
+        var game = new GameModel();
+        return game.count();
+    },
+
+    exists: function(seed) {
+        var game = new GameModel();
+        return this.findOne(seed) ? true : false;
+    },
+
+    save: function(game) {
         game.save(function(err) {
             if(err) {
                 console.log('save game failed');
             }
         });
-    },
-
-    addPlayer: function(seed, playerId) {
-
-    },
-
-    find: function(seed) {
-
-    },
-
-    save: function(game) {
-
     }
 };
