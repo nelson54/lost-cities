@@ -9,14 +9,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/signup', function(req, res, next) {
-  res.render('signup', { title: 'Create an account' });
+  res.render('signup', { title: 'Create an account', signupMsg: req.flash('signupMsg') });
 });
 
 router.get('/login', function(req, res, next) {
   if (req.isAuthenticated()) {
     res.redirect('/profile');
   }
-  res.render('login', { title: 'Log in' });
+  res.render('login', { title: 'Log in', loginMsg: req.flash('loginMsg') });
 });
 
 router.get('/profile', isLoggedIn, function (req, res) {
