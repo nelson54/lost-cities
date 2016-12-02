@@ -1,4 +1,6 @@
 class Card {
+    static matcher = /^([a-z])(x$|\d$|10$)/i;
+
     constructor(number, color, isMultiplier) {
         this.isMultiplier = isMultiplier;
         this.number = number;
@@ -17,12 +19,22 @@ class Card {
     }
     
     static parse(str) {
-        return new Card();
+        if (!matcher.test(str)) {
+            throw new Error(`Unable to parse str: ${str}`);
+        }
+
+        let data = str.match(matcher);
+        let color = data[1];
+        let number = /^x$/i.match(data[2]) ? 1 : data[2];
+
+        return new Card(parseInt(number), color, number == 1);
     }
 
     toString() {
         if(this.isMultiplier) {
-            return `${this.color}x`
+            return `${this.color}x`;
         }
+
+        return `${this.color}${this.number}`;
     }
 }
