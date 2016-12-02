@@ -1,3 +1,5 @@
+let _ = require('lodash');
+
 module.exports = class Card {
     static matcher = /^([a-z])(x$|\d$|10$)/i;
 
@@ -16,10 +18,6 @@ module.exports = class Card {
             .forEach( (card) => value += card.number );
 
         return value * multiplier;
-    }
-
-    static validate(cards) {
-        return isSorted(cards) && matchColors(cards);
     }
     
     static parse(str) {
@@ -42,18 +40,3 @@ module.exports = class Card {
         return `${this.color}${this.number}`;
     }
 };
-
-function isSorted(cards) {
-    var length = cards.length - 1;
-    for(var i = 0; i < length; ++i) {
-        if(cards[i].number >= cards[i+1].number) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-function matchColors(cards) {
-    return _.uniq(cards.map( (card) => card.color )).length == 1;
-}
