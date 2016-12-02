@@ -12,22 +12,12 @@ router.param('id', function(req, res, next, value){
         } );
 });
 
-router.use(function(req, res, next) {
-    req.user = {id: "5841b69cb193b5455b2849a7"};
-
-    return next();
-});
-
 router.get('/', function(req, res, next) {
-    gameRepo
+    return gameRepo
         .findAll()
         .then( (games) => {
-            req.json({
-                'games': games.map((game) => game._doc)
-            })
-        } );
-    
-    req.send();
+            res.json(games.map((game) => game._doc))
+        });
 });
 
 /* GET home page. */
@@ -36,14 +26,12 @@ router.get('/:id', function(req, res) {
 });
 
 router.put('/', function(req, res) {
-    var game = gameRepo.createGame(req.user.id);
+    var game = gameRepo.createGame("5841b69cb193b5455b2849a7");
 
     gameRepo
         .save(game)
         .then((game)=> {
-            res.send(game._doc.seed)
-        }).fail((err) => {
-            console.log(err);
+            res.json({gameId: game._doc._id.toString()})
         })
 }); 
 
