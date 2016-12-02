@@ -31,6 +31,10 @@ module.exports = class Card {
 
         return new Card(parseInt(number), color, number == 1);
     }
+    
+    equals(card) {
+        return this.color == card.color && this.number == card.number;
+    }
 
     toString() {
         if(this.isMultiplier) {
