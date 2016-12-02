@@ -7,13 +7,21 @@ router.get('/logout', function (req, res) {
 });
 
 module.exports = function(passport) {
-    router.post('/signup', passport.authenticate('local-signup', {
+    router.post('/signup', function(req, res, next){
+        console.log('Starting Signup..');
+        return next();
+    }, passport.authenticate('local-signup', {
         successRedirect: '/profile',
         failureRedirect: '/signup',
         failureFlash: true
     }));
 
-    router.post('/login', passport.authenticate('local-login', {
+    router.post('/login',
+        function(req, res, next){
+            console.log('Starting Login..');
+            return next();
+        },
+        passport.authenticate('local-login', {
         successRedirect: '/profile',
         failureRedirect: '/login',
         failureFlash: true

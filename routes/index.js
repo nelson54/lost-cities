@@ -26,6 +26,8 @@ router.get('/profile', isLoggedIn, function (req, res) {
   res.render('profile', {name: "TestPlayer"});
 });
 
+
+
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on
@@ -33,7 +35,8 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   // redirect them to the home page otherwise
-  res.redirect('/');
+  //res.redirect('/');
+  return next();
 }
 
 module.exports = router;
