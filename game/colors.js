@@ -5,7 +5,3 @@ let COLORS = module.exports = {
     'GREEN': 'G',
     'YELLOW': 'Y'
 };
-
-COLORS.values = function (){
-    return Object.values(COLORS);
-};

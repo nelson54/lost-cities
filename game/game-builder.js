@@ -10,7 +10,7 @@ module.exports = class GameBuilder {
 
     buildGame(gameInfo) {
         let deck = generateDeck();
-        seedShuffle(deck, gameInfo._id);
+        deck = seedShuffle(deck, gameInfo._id);
         let players = gameInfo.players.map((player) => new Player(player._id));
 
         let game = new Game(players, deck);

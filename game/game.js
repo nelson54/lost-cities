@@ -7,7 +7,7 @@ module.exports = class Game {
         this.players = players || {};
         this.currentPlayer = currentPlayer;
         
-        COLORS.values()
+        Object.values(COLORS)
             .forEach((color) => this.discardPiles[color] = []);
         players.forEach((player) => this.players[player.id] = players);
     }
