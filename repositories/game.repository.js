@@ -5,6 +5,7 @@ module.exports = {
         var game = new GameModel();
         game.start = Date.now();
         game.players = [playerOneId];
+        game.currentPlayer = playerOneId;
         return game;
     },
 
