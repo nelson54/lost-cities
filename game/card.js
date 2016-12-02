@@ -17,6 +17,10 @@ class Card {
 
         return value * multiplier;
     }
+
+    static validate(cards) {
+        return isSorted(cards) && matchColors(cards);
+    }
     
     static parse(str) {
         if (!matcher.test(str)) {
@@ -37,4 +41,19 @@ class Card {
 
         return `${this.color}${this.number}`;
     }
+}
+
+function isSorted(cards) {
+    var length = cards.length - 1;
+    for(var i = 0; i < length; ++i) {
+        if(cards[i].number >= cards[i+1].number) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function matchColors(cards) {
+    return _.uniq(cards.map( (card) => card.color )).length == 1;
 }
