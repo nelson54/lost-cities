@@ -22,6 +22,7 @@ class Commands {
     static draw (player, game) {
         let card = game.deck.pop();
         player.hand.push(card);
+        game.toggleCurrentPlayer();
 
         return true;
     }
@@ -38,6 +39,7 @@ class Commands {
         
         let card = game.discardPiles[color].pop();
         player.hand.push(card);
+        game.toggleCurrentPlayer();
 
         return true;
     }
@@ -56,4 +58,24 @@ class Commands {
         return false;
     }
 
+    static run(game, command, player) {
+        switch(command.action) {
+            case 'discard':
+                Commands.discard(command.card, player, game);
+                break;
+            case 'draw':
+                Commands.draw(player, game);
+                break;
+            case 'drawFromDiscard':
+                Commands.drawFromDiscard(player, game);
+                break;
+            case 'play':
+                Commands.play(command.card, player);
+                break;
+            default:
+                return false;
+                break;
+        }
+        return true;
+    }
 }
