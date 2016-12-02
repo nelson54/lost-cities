@@ -19,6 +19,10 @@ mongoose.connect(configDB.url, function(err) {
   }
 });
 
+// configure passportjs for login and signup
+var passportConfig = require('./config/passport.js');
+passportConfig(passport);
+
 var index = require('./routes/index');
 
 var app = express();
