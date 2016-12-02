@@ -1,0 +1,8 @@
+extends layout.pug
+
+block content
+  .container(ng-app="lost-cities-dashboard")
+    h3.text-info Dashboard for #{user.local.email}
+
+    .container(ng-view)
+

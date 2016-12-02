@@ -23,6 +23,12 @@ router.get('/profile', isLoggedIn, function (req, res) {
   res.render('profile', {user: req.user});
 });
 
+router.get('/dashboard', isLoggedIn, function(req, res) {
+  res.render('dashboard', {user: req.user});
+});
+
+router.use('/view', require('./views'));
+
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on
