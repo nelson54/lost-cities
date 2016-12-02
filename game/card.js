@@ -1,4 +1,4 @@
-class Card {
+module.exports = class Card {
     static matcher = /^([a-z])(x$|\d$|10$)/i;
 
     constructor(number, color, isMultiplier) {
