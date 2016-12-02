@@ -1,13 +1,14 @@
 let COLORS = require('./colors');
 
 module.exports = class Game {
-    construct(players, deck, currentPlayer) {
+    constructor(players, deck, currentPlayer) {
         this.deck = deck;
         this.discardPiles = {};
         this.players = players || {};
         this.currentPlayer = currentPlayer;
         
-        COLORS.forEach((color) => this.discardPiles[color] = []);
+        COLORS.values()
+            .forEach((color) => this.discardPiles[color] = []);
         players.forEach((player) => this.players[player.id] = players);
     }
     
@@ -16,6 +17,7 @@ module.exports = class Game {
     }
 
     toggleCurrentPlayer() {
-        this.currentPlayer = this.currentPlayer == players[0] ? players[1] : players[0];
+        this.currentPlayer =
+            this.currentPlayer == this.players[0] ? this.players[1] : this.players[0];
     };
 };

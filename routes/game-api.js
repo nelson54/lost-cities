@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('uuid/v4');
 var gameRepo = require('../repositories/game.repository');
+var GameBuilder = require('../game/game-builder');
+
+let gameBuilder = new GameBuilder();
 
 router.param('id', function(req, res, next, value){
     gameRepo
@@ -22,7 +25,10 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/:id', function(req, res) {
-    res.json(req.game._doc);
+    let game = gameBuilder
+        .buildGame(req.game._doc);
+
+    res.json(game);
 });
 
 router.put('/', function(req, res) {
