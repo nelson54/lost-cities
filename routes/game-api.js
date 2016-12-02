@@ -26,6 +26,8 @@ router.get('/', function(req, res, next) {
                 'games': games.map((game) => game._doc)
             })
         } );
+    
+    req.send();
 });
 
 /* GET home page. */
