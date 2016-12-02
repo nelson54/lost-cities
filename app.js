@@ -46,14 +46,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // setup app to use passportjs
 // note: change secure to false for an https site
+app.use(passport.initialize());
 app.use(session({
   secret: 'secret1234',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+
+//app.use(passport.session());
 app.use(flash());
 
 

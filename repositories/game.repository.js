@@ -30,10 +30,6 @@ module.exports = {
     },
 
     save: function(game) {
-        game.save(function(err) {
-            if(err) {
-                console.log('save game failed');
-            }
-        });
+        return game.save();
     }
 };

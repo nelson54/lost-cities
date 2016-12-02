@@ -35,8 +35,8 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   // redirect them to the home page otherwise
-  //res.redirect('/');
-  return next();
+  res.redirect('/');
+  //return next();
 }
 
 module.exports = router;
