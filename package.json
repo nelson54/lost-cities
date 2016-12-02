@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "",
+    "debug": "node ./bin/www",
     "start": "nodemon -e jade,html,js ./bin/www"
   },
   "dependencies": {

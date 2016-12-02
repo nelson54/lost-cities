@@ -35,7 +35,7 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   // redirect them to the home page otherwise
-  //res.redirect('/');
+  res.redirect('/');
   return next();
 }
 
