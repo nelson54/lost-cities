@@ -3,6 +3,7 @@ var router = express.Router();
 var uuid = require('uuid/v4');
 var gameRepo = require('../repositories/game.repository');
 var GameBuilder = require('../game/game-builder');
+var Commands = require('../game/commands');
 
 let gameBuilder = new GameBuilder();
 
@@ -56,6 +57,27 @@ router.put('/', function(req, res) {
         .then((game)=> {
             res.json({gameId: game._doc._id.toString()})
         })
-}); 
+});
+
+router.put('/:id/turn', function(req, res) {
+    let player = req.game.players[req.user.id];
+    let success = true;
+
+    req.body.commands.forEach((command) => {
+        if(!Commands.run(req.game, player, command)) {
+            success = false;
+        }
+    });
+
+    if(success) {
+        gameRepo
+            .save(game)
+            .then((game) => req.json(game));
+    } else {
+        req.json({
+            "Error": "Unable to execute turn."
+        });
+    }
+});
 
 module.exports = router;

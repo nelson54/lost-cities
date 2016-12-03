@@ -61,21 +61,15 @@ module.exports = class Commands {
     static run(game, command, player) {
         switch(command.action) {
             case 'discard':
-                Commands.discard(command.card, player, game);
-                break;
+                return Commands.discard(command.card, player, game);
             case 'draw':
-                Commands.draw(player, game);
-                break;
+                return Commands.draw(player, game);
             case 'drawFromDiscard':
-                Commands.drawFromDiscard(player, game);
-                break;
+                return Commands.drawFromDiscard(player, game);
             case 'play':
-                Commands.play(command.card, player);
-                break;
+                return Commands.play(command.card, player);
             default:
                 return false;
-                break;
         }
-        return true;
     }
-}
+};
