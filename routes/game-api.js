@@ -23,21 +23,18 @@ function set(req, name, value) {
     req.query[name] = value;
 }
 
-router.param('done', function(req, res, next, value) {
-    set(req, 'done', value);
-});
-
-router.param('player', function(req, res, next, value) {
-    set(req, 'player', value);
-});
-
-router.param('open', function(req, res, next, value) {
-    set(req, 'open', value);
+router.use('/', function(req, res, next) {
+    if(req.query['exclude-player-id']) {
+        req.excludePlayerId = req.query['exclude-player-id'];
+        delete req.query['exclude-player-id'];
+    }
+    
+    return next();
 });
 
 router.get('/', function(req, res) {
     return gameRepo
-        .find(req.query)
+        .find(req.query, req.excludePlayerId)
         .then( (games) => {
             res.json(games.map((game) => game._doc))
         });
