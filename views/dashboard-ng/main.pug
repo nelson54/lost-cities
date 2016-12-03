@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-md-12.col-sm-12.col-xs-12
+      h3 {{dashboard.mainMsg}}
+
+  .row
+    .col-md-offset-2.col-md-8.col-sm-offset-1.col-sm-10
+      .col-md-4.col-sm-6.col-xs-6(ng-repeat='game in dashboard.playerGames')
+
+        .panel(class="{{game.open? 'panel-warning' : 'panel-info'}}")
+          .panel-heading
+            a(href='/game/{{game._id}}')
+              | {{game._id}}
+
+          .panel-body
+            | started: {{game.start}}
+            br
+            | currentPlayer: {{game.currentPlayer}}
+            br

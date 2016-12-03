@@ -11,28 +11,29 @@ class GameInfo {
     }
 }
 
-let app = angular.module('list', []);
+let app = angular.module('list', ['ngResource']);
 app.controller('listController', function($scope) {
+    app.factory('MatchService', function($resource) {
+        return $resource('/api/matches/open');
+    });
 
+    app.factory('GameService', function($resource) {
+        return $resource('/api/games');
+    });
+
+    let getMatches= function(playerId) {
+        MatchService.get({player: playerId}, function(data) {
+            $scope.joinableMatches = GameInfo(data);
+        }, function(){
+            console.log('could not get joinable matches. error ' + status);
+        });
+    };
+
+    let getGames = function(playerId, done) {
+        GameService.get({player: playerId, done: done}, function(data) {
+            $scope.games = GameInfo(data);
+        }, function() {
+            console.log('could not get selected games. error ' + status);
+        });
+    };
 });
-
-let getMatches= function(playerId) {
-    $http({
-        url:'/api/matches/open?player=' + playerId,
-        method: 'GET'
-    }).success(function(data) {
-        let joinableGameInfo = GameInfo(data);
-    }).error(function(status) {
-        console.log('could not get joinable matches. error ' + status);
-    });
-};
-
-let getGames = function(playerId, done) {
-    $http({
-        url: '/api/games?player=' + playerId + "&done=" + done;
-    }).success(function(data) {
-        let games= GameInfo(data);
-    }).error(function(status) {
-        console.log('could not get selected games. error ' + status);
-    });
-};

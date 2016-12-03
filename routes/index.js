@@ -24,7 +24,15 @@ router.get('/profile', isLoggedIn, function (req, res) {
 });
 
 router.get('/dashboard', isLoggedIn, function(req, res) {
-  res.render('dashboard', {user: req.user});
+  res.render('dashboard', { user: req.user, user_id: req.user._id });
+});
+
+router.get('/game/:gameid', isLoggedIn, function(req, res) {
+  res.render('game', {
+    user: req.user,
+    user_id: req.user._id,
+    game_id: req.params.gameid
+  });
 });
 
 router.use('/view', require('./views'));
