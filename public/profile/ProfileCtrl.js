@@ -12,21 +12,25 @@ class GameInfo {
 }
 
 angular.module('lost-cities-profile')
-.controller('ProfileCtrl', ['GameService', function (GameService) {
+.controller('ProfileCtrl', ['Game', function (Game) {
     var profile = this;
-
-    console.log('here');
-
     let getGames = function(playerId, done) {
-        GameService.query({player: playerId, done: done}, function(data) {
+        Game.query({player: playerId, done: done}, function(data) {
             console.log(data);
             //this.games = GameInfo(data);
         }, function(status) {
             console.log('could not get selected games. error ' + status);
         });
     };
+
+    profile.createGame = function() {
+        var game = new Game();
+        return game.$save();
+    }
 }])
 
-.factory('GameService', function($resource) {
-    return $resource('/api/games');
-});
+.factory('Game', function($resource) {
+    return $resource('/api/games', null, {
+        'save': {method: 'PUT'}
+    });
+})
