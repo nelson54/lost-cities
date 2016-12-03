@@ -9,11 +9,17 @@ angular.module('lost-cities-game')
 
     // TODO: flesh this out some more
     let GET_GAME_STATE_API = "/api/games/"+game.gameId;
-    //$http.get(GET_GAME_STATE_API)
-    //.then(function success(res) {
-    //
-    //}, function failure() {
-    //    console.log("XHR failed!");
-    //});
+    var gameData = null;
+    game.hand = null;
+    $http.get(GET_GAME_STATE_API)
+    .then(function success(res) {
+        gameData = res.data;
+
+        game.hand = gameData.players.filter((player) => player.id == game.userId)[0].hand;
+        console.log(game.hand);
+
+    }, function failure() {
+        console.log("XHR failed!");
+    });
 
 });

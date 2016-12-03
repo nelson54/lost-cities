@@ -1,10 +1,72 @@
 extends layout.pug
 
 block content
-  .container(ng-app="lost-cities-gameboard")
+  link(type="text/css", rel="stylesheet", href="/js/card-stack/card-stack.css")
+  script(src="/js/card-stack/card-stack.js")
+
+  .container(ng-app="lost-cities-game")
     h3.text-info Game #{game_id}
     h5#userId= user_id
     h5#gameId= game_id
 
     .container(ng-controller="GameCtrl as game")
       | this is the game view
+
+      .row#gameboard
+        .col-md-2.panel.panel-warning
+          .row P2 stack - yellow
+
+          .row discard
+
+          .row P1 stack - yellow
+
+        .col-md-2.panel.panel-info
+          .row P2 stack - blue
+
+          .row discard
+
+          .row P1 stack - blue
+
+        .col-md-2.panel.panel-default
+          .row P2 stack - white
+
+          .row discard
+
+          .row P1 stack - white
+
+        .col-md-2.panel.panel-success
+          .row P2 stack - green
+
+          .row discard
+
+          .row P1 stack - green
+
+        .col-md-2.panel.panel-danger
+          .row P2 stack - blue
+
+          .row discard
+
+          .row P1 stack - blue
+
+        .col-md-2
+          | Deck area
+
+
+      .row#playerhand
+
+        | this is the player's hand
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        div
+          ul.fan
+            li(ng-repeat="card in game.hand")
+              .flip
+                .card
+                  .face.front(class="{{card.color}}") {{card.number}}
+                  .face.back Back
