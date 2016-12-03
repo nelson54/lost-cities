@@ -6,4 +6,8 @@ router.get('/dashboard/:viewname', function(req, res) {
     res.render('dashboard-ng/'+req.params.viewname);
 });
 
+router.get('/profile/:viewname', function(req, res) {
+    res.render('profile-ng/'+req.params.viewname);
+});
+
 module.exports = router;

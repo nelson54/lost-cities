@@ -14,8 +14,8 @@ block content
         b.text-uppercase email:
         span= user.local.email
       div
-        a.btn.btn-primary(id='createGameButton') Create Game
-        a.btn.btn-primary(id='joinGameButton') Join Game
+        a.btn.btn-primary(href='/profile/#/create') Create Game
+        a.btn.btn-primary(href='/profile/#/join') Join Game
         a.btn.btn-primary(href='/dashboard', id='dashboardButton') Dashboard
 
       a.btn.btn-warning(href='/authenticate/logout') Log Out
@@ -23,4 +23,3 @@ block content
   .container(ng-app="lost-cities-profile")
     .h3 lol
     .container(ng-view)
-
