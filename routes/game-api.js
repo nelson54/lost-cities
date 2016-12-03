@@ -15,9 +15,29 @@ router.param('id', function(req, res, next, value){
         } );
 });
 
-router.get('/', function(req, res, next) {
+function set(req, name, value) {
+    if (req.query == null) {
+        req.query = {};
+    }
+
+    req.query[name] = value;
+}
+
+router.param('done', function(req, res, next, value) {
+    set(req, 'done', value);
+});
+
+router.param('player', function(req, res, next, value) {
+    set(req, 'player', value);
+});
+
+router.param('open', function(req, res, next, value) {
+    set(req, 'open', value);
+});
+
+router.get('/', function(req, res) {
     return gameRepo
-        .findAll()
+        .find(req.query)
         .then( (games) => {
             res.json(games.map((game) => game._doc))
         });

@@ -8,7 +8,10 @@
       .col-md-4.col-sm-6.col-xs-6(ng-repeat='game in dashboard.playerGames')
 
         .panel(class="{{game.open? 'panel-warning' : 'panel-info'}}")
-          .panel-heading {{game._id}}
+          .panel-heading
+            a(href='/game/{{game._id}}')
+              | {{game._id}}
+
           .panel-body
             | started: {{game.start}}
             br
