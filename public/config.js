@@ -14,11 +14,19 @@ angular.module('lost-cities-dashboard', ["ngRoute"])
 
 angular.module('lost-cities-game', []);
 
-angular.module('lost-cities-profile', ['ngRoute'])
+angular.module('lost-cities-profile', ['ngRoute', 'ngResource'])
 .config(function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: '/view/profile',
+            templateUrl: '/view/profile/main',
+            controller: 'ProfileCtrl as profile'
+        })
+        .when('/create', {
+            templateUrl: '/view/profile/create',
+            controller: 'ProfileCtrl as profile'
+        })
+        .when('/join', {
+            templateUrl: '/view/profile/join',
             controller: 'ProfileCtrl as profile'
         });
 });
