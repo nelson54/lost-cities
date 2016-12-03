@@ -1,0 +1,10 @@
+extends layout.pug
+
+block content
+  .container(ng-app="lost-cities-gameboard")
+    h3.text-info Game #{game_id}
+    h5#userId= user_id
+    h5#gameId= game_id
+
+    .container(ng-controller="GameCtrl as game")
+      | this is the game view

@@ -12,6 +12,8 @@ angular.module('lost-cities-dashboard', ["ngRoute"])
         })
 });
 
+angular.module('lost-cities-game', []);
+
 angular.module('lost-cities-profile', ['ngRoute'])
 .config(function($routeProvider) {
     $routeProvider
