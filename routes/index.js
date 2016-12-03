@@ -24,7 +24,7 @@ router.get('/profile', isLoggedIn, function (req, res) {
 });
 
 router.get('/dashboard', isLoggedIn, function(req, res) {
-  res.render('dashboard', {user: req.user});
+  res.render('dashboard', { user: req.user, user_id: req.user._id });
 });
 
 router.use('/view', require('./views'));

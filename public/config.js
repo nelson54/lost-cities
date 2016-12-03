@@ -3,7 +3,11 @@ angular.module('lost-cities-dashboard', ["ngRoute"])
 .config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "/view/dashboard-main",
+            templateUrl: "/view/dashboard/main",
+            controller: "DashboardCtrl as dashboard"
+        })
+        .when("/sub", {
+            templateUrl: "/view/dashboard/sub",
             controller: "DashboardCtrl as dashboard"
         })
 });
