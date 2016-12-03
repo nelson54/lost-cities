@@ -18,8 +18,15 @@ module.exports = {
         return GameModel.find();
     },
     
-    find: function(query) {
-        return GameModel.find(query || {});
+    find: function(query, excludePlayerId) {
+        let gameQuery = GameModel
+            .find(query || {});
+
+        if (excludePlayerId) {
+            gameQuery.ne('players', excludePlayerId);
+        }
+
+        return gameQuery;
     },
     
     findOpenGames: function() {
