@@ -14,8 +14,12 @@ module.exports = {
         return GameModel.findById(id);
     },
 
-    findAll: function() {
-        return GameModel.find({});
+    findAll: function(query) {
+        return GameModel.find();
+    },
+    
+    find: function(query) {
+        return GameModel.find(query || {});
     },
     
     findOpenGames: function() {
