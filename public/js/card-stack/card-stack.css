@@ -1,11 +1,3 @@
-/* coloring */
-/* animation stuff */
-/* card variables */
-/* the amount of cards, keep this amount ODD, NOT EVEN! */
-/* each card's width */
-/* each card's height */
-/* not needed to edit */
-/* not needed to edit */
 @import "http://fonts.googleapis.com/css?family=Varela+Round";
 body,
 html {
@@ -78,161 +70,161 @@ a:hover {
     transform: scale(1.25) rotate(3deg) rotatex(-3deg) translate(-10px, -5px) !important;
 }
 .fan li:nth-child(1) {
-    -webkit-transform: rotate(-32deg);
-    -moz-transform: rotate(-32deg);
-    -ms-transform: rotate(-32deg);
-    -o-transform: rotate(-32deg);
-    transform: rotate(-32deg);
-    -webkit-animation: fadeIn 750ms 150ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 150ms ease-in-out forwards;
-    animation: fadeIn 750ms 150ms ease-in-out forwards;
-}
-.fan li:nth-child(2) {
     -webkit-transform: rotate(-24deg);
     -moz-transform: rotate(-24deg);
     -ms-transform: rotate(-24deg);
     -o-transform: rotate(-24deg);
     transform: rotate(-24deg);
-    -webkit-animation: fadeIn 750ms 300ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 300ms ease-in-out forwards;
-    animation: fadeIn 750ms 300ms ease-in-out forwards;
-}
-.fan li:nth-child(3) {
-    -webkit-transform: rotate(-16deg);
-    -moz-transform: rotate(-16deg);
-    -ms-transform: rotate(-16deg);
-    -o-transform: rotate(-16deg);
-    transform: rotate(-16deg);
-    -webkit-animation: fadeIn 750ms 450ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 450ms ease-in-out forwards;
-    animation: fadeIn 750ms 450ms ease-in-out forwards;
-}
-.fan li:nth-child(4) {
-    -webkit-transform: rotate(-8deg);
-    -moz-transform: rotate(-8deg);
-    -ms-transform: rotate(-8deg);
-    -o-transform: rotate(-8deg);
-    transform: rotate(-8deg);
-    -webkit-animation: fadeIn 750ms 600ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 600ms ease-in-out forwards;
-    animation: fadeIn 750ms 600ms ease-in-out forwards;
-}
-.fan li:nth-child(5) {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-animation: fadeIn 750ms 750ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 750ms ease-in-out forwards;
-    animation: fadeIn 750ms 750ms ease-in-out forwards;
-}
-.fan li:nth-child(6) {
-    -webkit-transform: rotate(8deg);
-    -moz-transform: rotate(8deg);
-    -ms-transform: rotate(8deg);
-    -o-transform: rotate(8deg);
-    transform: rotate(8deg);
-    -webkit-animation: fadeIn 750ms 900ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 900ms ease-in-out forwards;
-    animation: fadeIn 750ms 900ms ease-in-out forwards;
-}
-.fan li:nth-child(5) {
-    -webkit-transform: translate(0) rotate(0deg);
-    -moz-transform: translate(0) rotate(0deg);
-    -ms-transform: translate(0) rotate(0deg);
-    -o-transform: translate(0) rotate(0deg);
-    transform: translate(0) rotate(0deg);
-    -webkit-animation: fadeIn 750ms 900ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 900ms ease-in-out forwards;
-    animation: fadeIn 750ms 900ms ease-in-out forwards;
-}
-.fan li:nth-child(1) {
-    -webkit-transform: rotate(-32deg);
-    -moz-transform: rotate(-32deg);
-    -ms-transform: rotate(-32deg);
-    -o-transform: rotate(-32deg);
-    transform: rotate(-32deg);
     -webkit-animation: fadeIn 750ms 150ms ease-in-out forwards;
     -moz-animation: fadeIn 750ms 150ms ease-in-out forwards;
     animation: fadeIn 750ms 150ms ease-in-out forwards;
 }
 .fan li:nth-child(2) {
-    -webkit-transform: rotate(-24deg);
-    -moz-transform: rotate(-24deg);
-    -ms-transform: rotate(-24deg);
-    -o-transform: rotate(-24deg);
-    transform: rotate(-24deg);
-    -webkit-animation: fadeIn 750ms 300ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 300ms ease-in-out forwards;
-    animation: fadeIn 750ms 300ms ease-in-out forwards;
-}
-.fan li:nth-child(3) {
     -webkit-transform: rotate(-16deg);
     -moz-transform: rotate(-16deg);
     -ms-transform: rotate(-16deg);
     -o-transform: rotate(-16deg);
     transform: rotate(-16deg);
-    -webkit-animation: fadeIn 750ms 450ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 450ms ease-in-out forwards;
-    animation: fadeIn 750ms 450ms ease-in-out forwards;
+    -webkit-animation: fadeIn 750ms 300ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 300ms ease-in-out forwards;
+    animation: fadeIn 750ms 300ms ease-in-out forwards;
 }
-.fan li:nth-child(4) {
+.fan li:nth-child(3) {
     -webkit-transform: rotate(-8deg);
     -moz-transform: rotate(-8deg);
     -ms-transform: rotate(-8deg);
     -o-transform: rotate(-8deg);
     transform: rotate(-8deg);
-    -webkit-animation: fadeIn 750ms 600ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 600ms ease-in-out forwards;
-    animation: fadeIn 750ms 600ms ease-in-out forwards;
+    -webkit-animation: fadeIn 750ms 450ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 450ms ease-in-out forwards;
+    animation: fadeIn 750ms 450ms ease-in-out forwards;
 }
-.fan li:nth-child(5) {
+.fan li:nth-child(4) {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
-    -webkit-animation: fadeIn 750ms 750ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 750ms ease-in-out forwards;
-    animation: fadeIn 750ms 750ms ease-in-out forwards;
+    -webkit-animation: fadeIn 750ms 600ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 600ms ease-in-out forwards;
+    animation: fadeIn 750ms 600ms ease-in-out forwards;
 }
-.fan li:nth-child(6) {
+.fan li:nth-child(5) {
     -webkit-transform: rotate(8deg);
     -moz-transform: rotate(8deg);
     -ms-transform: rotate(8deg);
     -o-transform: rotate(8deg);
     transform: rotate(8deg);
-    -webkit-animation: fadeIn 750ms 900ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 900ms ease-in-out forwards;
-    animation: fadeIn 750ms 900ms ease-in-out forwards;
+    -webkit-animation: fadeIn 750ms 750ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 750ms ease-in-out forwards;
+    animation: fadeIn 750ms 750ms ease-in-out forwards;
 }
-.fan li:nth-child(7) {
+.fan li:nth-child(6) {
     -webkit-transform: rotate(16deg);
     -moz-transform: rotate(16deg);
     -ms-transform: rotate(16deg);
     -o-transform: rotate(16deg);
     transform: rotate(16deg);
-    -webkit-animation: fadeIn 750ms 1050ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 1050ms ease-in-out forwards;
-    animation: fadeIn 750ms 1050ms ease-in-out forwards;
+    -webkit-animation: fadeIn 750ms 900ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 900ms ease-in-out forwards;
+    animation: fadeIn 750ms 900ms ease-in-out forwards;
 }
-.fan li:nth-child(8) {
+.fan li:nth-child(5) {
+    -webkit-transform: translate(0) rotate(-8deg);
+    -moz-transform: translate(0) rotate(-8deg);
+    -ms-transform: translate(0) rotate(-8deg);
+    -o-transform: translate(0) rotate(-8deg);
+    transform: translate(0) rotate(-8deg);
+    -webkit-animation: fadeIn 750ms 900ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 900ms ease-in-out forwards;
+    animation: fadeIn 750ms 900ms ease-in-out forwards;
+}
+.fan li:nth-child(1) {
+    -webkit-transform: rotate(-24deg);
+    -moz-transform: rotate(-24deg);
+    -ms-transform: rotate(-24deg);
+    -o-transform: rotate(-24deg);
+    transform: rotate(-24deg);
+    -webkit-animation: fadeIn 750ms 150ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 150ms ease-in-out forwards;
+    animation: fadeIn 750ms 150ms ease-in-out forwards;
+}
+.fan li:nth-child(2) {
+    -webkit-transform: rotate(-16deg);
+    -moz-transform: rotate(-16deg);
+    -ms-transform: rotate(-16deg);
+    -o-transform: rotate(-16deg);
+    transform: rotate(-16deg);
+    -webkit-animation: fadeIn 750ms 300ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 300ms ease-in-out forwards;
+    animation: fadeIn 750ms 300ms ease-in-out forwards;
+}
+.fan li:nth-child(3) {
+    -webkit-transform: rotate(-8deg);
+    -moz-transform: rotate(-8deg);
+    -ms-transform: rotate(-8deg);
+    -o-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+    -webkit-animation: fadeIn 750ms 450ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 450ms ease-in-out forwards;
+    animation: fadeIn 750ms 450ms ease-in-out forwards;
+}
+.fan li:nth-child(4) {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-animation: fadeIn 750ms 600ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 600ms ease-in-out forwards;
+    animation: fadeIn 750ms 600ms ease-in-out forwards;
+}
+.fan li:nth-child(5) {
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    transform: rotate(8deg);
+    -webkit-animation: fadeIn 750ms 750ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 750ms ease-in-out forwards;
+    animation: fadeIn 750ms 750ms ease-in-out forwards;
+}
+.fan li:nth-child(6) {
+    -webkit-transform: rotate(16deg);
+    -moz-transform: rotate(16deg);
+    -ms-transform: rotate(16deg);
+    -o-transform: rotate(16deg);
+    transform: rotate(16deg);
+    -webkit-animation: fadeIn 750ms 900ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 900ms ease-in-out forwards;
+    animation: fadeIn 750ms 900ms ease-in-out forwards;
+}
+.fan li:nth-child(7) {
     -webkit-transform: rotate(24deg);
     -moz-transform: rotate(24deg);
     -ms-transform: rotate(24deg);
     -o-transform: rotate(24deg);
     transform: rotate(24deg);
-    -webkit-animation: fadeIn 750ms 1200ms ease-in-out forwards;
-    -moz-animation: fadeIn 750ms 1200ms ease-in-out forwards;
-    animation: fadeIn 750ms 1200ms ease-in-out forwards;
+    -webkit-animation: fadeIn 750ms 1050ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 1050ms ease-in-out forwards;
+    animation: fadeIn 750ms 1050ms ease-in-out forwards;
 }
-.fan li:nth-child(9) {
+.fan li:nth-child(8) {
     -webkit-transform: rotate(32deg);
     -moz-transform: rotate(32deg);
     -ms-transform: rotate(32deg);
     -o-transform: rotate(32deg);
     transform: rotate(32deg);
+    -webkit-animation: fadeIn 750ms 1200ms ease-in-out forwards;
+    -moz-animation: fadeIn 750ms 1200ms ease-in-out forwards;
+    animation: fadeIn 750ms 1200ms ease-in-out forwards;
+}
+.fan li:nth-child(9) {
+    -webkit-transform: rotate(50deg);
+    -moz-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    -o-transform: rotate(50deg);
+    transform: rotate(50deg);
     -webkit-animation: fadeIn 750ms 1350ms ease-in-out forwards;
     -moz-animation: fadeIn 750ms 1350ms ease-in-out forwards;
     animation: fadeIn 750ms 1350ms ease-in-out forwards;
@@ -388,16 +380,20 @@ a:hover {
     font-size: 40px;
 }
 .fan li .flip {
-    width: 200px;
-    height: 280px;
+    width: 133px;
+    height: 187px;
+    /*width: 200px;*/
+    /*height: 280px;*/
     position: relative;
     -webkit-perspective: 1800;
     -moz-perspective: 1800;
     perspective: 1800;
 }
 .fan li .flip .card {
-    width: 200px;
-    height: 280px;
+    width: 133px;
+    height: 187px;
+    /*width: 200px;*/
+    /*height: 280px;*/
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
@@ -415,8 +411,10 @@ a:hover {
     transform: rotateX(-190deg);
 }
 .fan li .flip .card .face {
-    width: 200px;
-    height: 280px;
+    width: 133px;
+    height: 187px;
+    /*width: 200px;*/
+    /*height: 280px;*/
     position: absolute;
     z-index: 99;
     text-align: center;

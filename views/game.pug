@@ -5,68 +5,36 @@ block content
   script(src="/js/card-stack/card-stack.js")
 
   .container(ng-app="lost-cities-game")
-    h3.text-info Game #{game_id}
+    h3.text-info Game ID# #{game_id}
     h5#userId= user_id
     h5#gameId= game_id
 
     .container(ng-controller="GameCtrl as game")
-      | this is the game view
 
-      .row#gameboard
-        .col-md-2.panel.panel-warning
-          .row P2 stack - yellow
+      #gameboard.row
+        .col-md-2(ng-repeat="colorStack in game.colorStacks")
+          .panel-group
+            .panel(class="{{colorStack.class}}")
+              .panel-heading Opponent Cards
 
-          .row discard
+            .panel(class="{{colorStack.class}}")
+              .panel-body
+                .container {{colorStack.color}} discard pile
 
-          .row P1 stack - yellow
-
-        .col-md-2.panel.panel-info
-          .row P2 stack - blue
-
-          .row discard
-
-          .row P1 stack - blue
-
-        .col-md-2.panel.panel-default
-          .row P2 stack - white
-
-          .row discard
-
-          .row P1 stack - white
-
-        .col-md-2.panel.panel-success
-          .row P2 stack - green
-
-          .row discard
-
-          .row P1 stack - green
-
-        .col-md-2.panel.panel-danger
-          .row P2 stack - blue
-
-          .row discard
-
-          .row P1 stack - blue
+            .panel(class="{{colorStack.class}}")
+              .panel-heading Player Cards
 
         .col-md-2
-          | Deck area
+          .panel.panel-primary
+            .panel-body
+              | Deck area
 
 
-      .row#playerhand
-
-        | this is the player's hand
-        br
-        br
-        br
-        br
-        br
-        br
-        br
-        br
+      #playerhand.row(style="padding-top: 165px")
         div
           ul.fan
             li(ng-repeat="card in game.hand")
               .flip
                 .card
-                  .face.front(class="{{card.color}}") {{card.number}}
+                  .face.front(class="{{card.color}}", ng-click="game.clicked(card)") {{card.number}}
                   .face.back Back
