@@ -1,6 +1,16 @@
 extends layout.pug
 
 block content
+  style.
+    .lowpadding {
+      padding: 2px !important;
+      margin: 0 !important;
+    }
+    .discard-pile {
+      width: 133px !important;
+      height: 187px !important;
+    }
+
   link(type="text/css", rel="stylesheet", href="/js/card-stack/card-stack.css")
   script(src="/js/card-stack/card-stack.js")
 
@@ -12,16 +22,16 @@ block content
     .container(ng-controller="GameCtrl as game")
 
       #gameboard.row
-        .col-md-2(ng-repeat="colorStack in game.colorStacks")
+        .col-md-2.lowpadding(ng-repeat="colorStack in game.colorStacks")
           .panel-group
             .panel(class="{{colorStack.class}}")
               .panel-heading Opponent Cards
 
             .panel(class="{{colorStack.class}}")
               .panel-body
-                .container {{colorStack.color}} discard pile
+                .container.discard-pile {{colorStack.color}} discard pile
 
-            .panel(class="{{colorStack.class}}")
+            .panel.player-cards(class="{{colorStack.class}}")
               .panel-heading Player Cards
 
         .col-md-2
@@ -36,5 +46,5 @@ block content
             li(ng-repeat="card in game.hand")
               .flip
                 .card
-                  .face.front(class="{{card.color}}", ng-click="game.clicked(card)") {{card.number}}
+                  .face.front(class="{{card.color}}", data-color="{{card.color}}", data-number="{{card.number}}" ng-mouseover="game.initDragDrop()") {{card.number}}
                   .face.back Back
