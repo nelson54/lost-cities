@@ -71,12 +71,10 @@ router.put('/:id/turn', function(req, res) {
 
     if(success) {
         gameRepo
-            .save(game)
-            .then((game) => req.json(game));
+        .save(game)
+        .then((game) => res.json(game));
     } else {
-        req.json({
-            "Error": "Unable to execute turn."
-        });
+        res.json({ "Error": "Unable to execute turn." });
     }
 });
 
