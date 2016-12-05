@@ -11,14 +11,28 @@ module.exports = class GameBuilder {
     buildGame(gameInfo) {
         let deck = generateDeck();
         deck = seedShuffle(deck, gameInfo._id);
-        let players = gameInfo.players.map((player) => new Player(player));
+        let players = {};
+        var currentPlayer;
+        gameInfo.players.forEach((player) => {
+            players[player] = new Player(player);
+            if(gameInfo.currentPlayer == player) {
+                currentPlayer = players[player];
+            }
+        });
 
-        let game = new Game(players, deck);
+        let game = new Game(players, deck, currentPlayer);
 
-        players.forEach(
-            (player) => this.drawForPlayer(game, player));
+        Object.values(players)
+            .forEach((player) => this.drawForPlayer(game, player));
 
-        gameInfo.turns.forEach((command) => Commands.run(game, command, game.currentPlayer));
+        gameInfo.turns
+            .reverse()
+            .map((turn) => turn._doc)
+            .forEach((turn) => {
+                turn.commands.forEach((command) => {
+                    Commands.run(game, game.currentPlayer, command._doc)
+                })
+            });
         return game;
     }
 

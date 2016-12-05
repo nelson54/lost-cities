@@ -60,19 +60,21 @@ router.put('/', function(req, res) {
 });
 
 router.post('/:id/turn', function(req, res) {
-    let player = req.game.players[req.user.id];
+    let game = gameBuilder.buildGame(req.game._doc);
+    let player = game.players[req.user.id];
     let success = true;
 
     req.body.commands.forEach((command) => {
-        if(!Commands.run(req.game, player, command)) {
+        if(!Commands.run(game, player, command)) {
             success = false;
         }
     });
 
     if(success) {
+        req.game.turns.push(req.body);
         gameRepo
-        .save(game)
-        .then((game) => res.json(game));
+            .save(req.game)
+            .then(() => res.json(game));
     } else {
         res.json({ "Error": "Unable to execute turn." });
     }

@@ -22,7 +22,7 @@ module.exports = class Commands {
     static draw (player, game) {
         let card = game.deck.pop();
         player.hand.push(card);
-        game.toggleCurrentPlayer();
+        //game.toggleCurrentPlayer();
 
         return true;
     }
@@ -39,7 +39,7 @@ module.exports = class Commands {
         
         let card = game.discardPiles[color].pop();
         player.hand.push(card);
-        game.toggleCurrentPlayer();
+        //game.toggleCurrentPlayer();
 
         return true;
     }
@@ -59,6 +59,7 @@ module.exports = class Commands {
     }
 
     static run(game, player, command) {
+        console.log('');
         switch(command.action) {
             case 'discard':
                 return Commands.discard(command.card, player, game);

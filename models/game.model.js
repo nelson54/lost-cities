@@ -6,7 +6,11 @@ var gameSchema = mongoose.Schema({
     open: Boolean,
     seed: String,
     players: [String],
-    turns: [{action: String, card: String}],
+    turns: [
+        {
+            commands: [{action: String, card: {number: Number, color: String, isMultiplier: Boolean}}]
+        }
+    ],
     winner: String,
     currentPlayer: String
 });
