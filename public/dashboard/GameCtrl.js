@@ -53,7 +53,7 @@ angular.module('lost-cities-game')
             game.playerPhase = gameData.currentPlayer.id==game.userId?
                 game.constants.PHASE1 : game.constants.WAITING_ON_OPPONENT;
         } else {
-            game.playerPhase = game.colorStacks.GAME_ENDED;
+            game.playerPhase = game.constants.GAME_ENDED;
         }
 
         // TODO: hardcode myself as the first player always for testing

@@ -16,10 +16,13 @@ block content
 
   .container(ng-app="lost-cities-game")
     h3.text-info Game ID# #{game_id}
-    h5#userId= user_id
-    h5#gameId= game_id
+    span#userId= user_id
+    span --
+    span#gameId= game_id
 
     .container(ng-controller="GameCtrl as game")
+      .row.text-center
+        h4 {{game.playerPhase}}
 
       #gameboard.row
         .col-md-2.lowpadding(ng-repeat="colorStack in game.colorStacks")
