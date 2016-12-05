@@ -11,11 +11,13 @@ module.exports = class Game {
             .forEach((color) => this.discardPiles[color] = []);
     }
     
-    playerById(id) {
+    getPlayerById(id) {
         let player;
         this.players.forEach( (p)=> { if(p.id == id) {
             player = p;
         }} );
+
+        return player;
     }
 
     toggleCurrentPlayer() {

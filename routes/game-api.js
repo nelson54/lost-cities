@@ -62,7 +62,7 @@ router.post('/:id', function(req, res) {
 
 router.post('/:id/turn', function(req, res) {
     let game = gameBuilder.buildGame(req.game._doc);
-    let player = game.players[req.user.id];
+    let player = game.getPlayerById(req.user.id);
     let success = true;
 
     req.body.commands.forEach((command) => {
