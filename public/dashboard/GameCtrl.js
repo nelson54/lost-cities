@@ -7,7 +7,11 @@ angular.module('lost-cities-game')
         WAITING_ON_OPPONENT: 'waiting on the opponent\'s turn',
         PHASE1: 'play or discard a card',
         PHASE2: 'draw from the deck or discard pile',
-        GAME_ENDED: 'the game has ended'
+        GAME_ENDED: 'the game has ended',
+        ACTION_PLAY_CARD: 'play',
+        ACTION_DISCARD: 'discard',
+        ACTION_DRAW: 'draw',
+        ACTION_DRAW_FROM_DISCARD: 'drawFromDiscard'
     };
 
     game.userId = $window.document.getElementById('userId').innerText;
@@ -119,7 +123,10 @@ angular.module('lost-cities-game')
                         (c) => (c!=cardToRemove)
                     );
                     $scope.$apply();
+                    // TODO: verify this
                     game.disableDragDrop(color);
+                    game.commitPhase(game.constants.ACTION_DISCARD, cardToRemove);
+                    game.playerPhase = game.constants.PHASE2;
                 }
             });
         });
@@ -149,10 +156,33 @@ angular.module('lost-cities-game')
         console.log("drew card %O", cardDrawn);
         alert('you drew card '+ cardDrawn.color+cardDrawn.number);
         // TODO: send the action to the game api
+        game.commitPhase(game.constants.ACTION_DRAW);
+        game.sendTurn();
     };
 
     game.turns = [];
+    game.commitPhase = function (action, card) {
+        let turnObj = {};
+        turnObj.action = action;
+        if (card) {
+            turnObj.card = {
+                color: card.color,
+                number: +card.number,
+                isMultiplier: card.number==1
+            };
+        }
+        game.turns.push(turnObj);
+    };
     game.sendTurn = function () {
-        // TODO: complete this function after phase 2
+        if (game.turns.length != 2 ) {
+            alert('error, invalid turn');
+            return;
+        }
+        $http.post('/api/games/' + game.gameId + '/turn', {commands: game.turns})
+        .then(function success(res) {
+            console.log(res);
+        }, function failure() {
+            console.log('failed to send turn');
+        });
     };
 });
