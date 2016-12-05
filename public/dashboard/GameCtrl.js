@@ -67,20 +67,29 @@ angular.module('lost-cities-game')
         console.log("could not get current game state!");
     });
 
-    game.initDragDrop = function () {
+    game.initDragDrop = function (color) {
         $(".face.front").each(function () {
             $(this).draggable({
                 helper: 'clone',
                 start: function(e, ui) {
                     $(this).hide();
+                    game.enableDropForColor(color);
                 },
                 stop: function(e, ui) {
                     $(this).show();
+                    game.disableDragDrop(color);
                 }
             });
         });
+    };
 
+    game.enableDropForColor = function (color ) {
         $(".discard-pile").each(function () {
+            if ($(this).attr('data-color') != color) {
+                return;
+            }
+            $(this).addClass('well');
+
             $(this).droppable({
                 drop: function (e, ui) {
                     console.log(e.target);
@@ -94,8 +103,12 @@ angular.module('lost-cities-game')
                         number : draggable.attr('data-number')
                     };
                     console.log("card dropped: %O", card);
-                    // TODO: add  the card on top if allowed --> use angular here
-                    container.empty().text("discarded "+card.color+" "+card.number);
+                    let discardPile = game.colorStacks.filter((stack) => stack.color==card.color)[0].discardPile;
+                    discardPile.push({
+                        color : card.color,
+                        number : (+card.number)
+                    });
+                    //container.empty().text("discarded "+card.color+" "+card.number);
 
                     // remove the card from the hand
                     // TODO: watch out for multipliers
@@ -106,8 +119,18 @@ angular.module('lost-cities-game')
                         (c) => (c!=cardToRemove)
                     );
                     $scope.$apply();
+                    game.disableDragDrop(color);
                 }
             });
+        });
+    };
+
+    game.disableDragDrop = function (color) {
+        console.log('disabling drag drop for color %s', color);
+        $(".discard-pile").each(function () {
+            if ($(this).attr('data-color') == color) {
+                $(this).removeClass('well').droppable('disable');
+            }
         });
     };
 

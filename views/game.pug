@@ -32,8 +32,9 @@ block content
 
             .panel(class="{{colorStack.class}}")
               .panel-body
-                .container.discard-pile
-                  | {{colorStack.discardPile.length==0? 'empty discard pile' : colorStack.discardPile[colorStack.discardPile.length-1]}}
+                .container.discard-pile(data-color="{{colorStack.color}}")
+                  | {{colorStack.discardPile.length==0?
+                  |   'empty discard pile' : colorStack.discardPile[colorStack.discardPile.length-1].color+colorStack.discardPile[colorStack.discardPile.length-1].number}}
 
             .panel.player-cards(class="{{colorStack.class}}")
               .panel-heading Player Cards
@@ -57,5 +58,6 @@ block content
             li(ng-repeat="card in game.hand")
               .flip
                 .card
-                  .face.front(class="{{card.color}}", data-color="{{card.color}}", data-number="{{card.number}}" ng-mouseover="game.initDragDrop()") {{card.number}}
+                  .face.front(class="{{card.color}}", data-color="{{card.color}}", data-number="{{card.number}}"
+                              ng-mouseover="game.initDragDrop(card.color)") {{card.number}}
                   .face.back Back
