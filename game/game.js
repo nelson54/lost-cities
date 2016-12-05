@@ -12,7 +12,10 @@ module.exports = class Game {
     }
     
     playerById(id) {
-        return this.players[id];
+        let player;
+        this.players.forEach( (p)=> { if(p.id == id) {
+            player = p;
+        }} );
     }
 
     toggleCurrentPlayer() {

@@ -49,8 +49,9 @@ router.get('/:id', function(req, res) {
     res.json(game);
 });
 
-router.put('/', function(req, res) {
-    var game = gameRepo.createGame(req.user.id);
+router.post('/:id', function(req, res) {
+    var game = req.game;
+    req.game.players.push(req.user.id);
 
     gameRepo
         .save(game)

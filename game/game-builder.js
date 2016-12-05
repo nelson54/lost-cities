@@ -11,13 +11,14 @@ module.exports = class GameBuilder {
     buildGame(gameInfo) {
         let deck = generateDeck();
         deck = seedShuffle(deck, gameInfo._id);
-        let players = {};
+
         var currentPlayer;
-        gameInfo.players.forEach((player) => {
-            players[player] = new Player(player);
-            if(gameInfo.currentPlayer == player) {
-                currentPlayer = players[player];
+        let players = gameInfo.players.map((id) => {
+            let player = new Player(id);
+            if (id == gameInfo.currentPlayer){
+                currentPlayer = player;
             }
+            return player;
         });
 
         let game = new Game(players, deck, currentPlayer);
