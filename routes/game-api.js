@@ -59,7 +59,7 @@ router.put('/', function(req, res) {
         })
 });
 
-router.put('/:id/turn', function(req, res) {
+router.post('/:id/turn', function(req, res) {
     let player = req.game.players[req.user.id];
     let success = true;
 
