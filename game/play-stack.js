@@ -24,7 +24,7 @@ module.exports = class PlayStack {
     }
     
     add (card) {
-        this.cards.push();
+        this.cards.push(card);
     }
 };
 
@@ -41,6 +41,6 @@ function isSorted(cards) {
 
 function matchColors(color, cards) {
     let colors;
-    return ( colors = _.uniq(cards.map( (card) => card.color ))).length == 1
-        && colors[0] == color;
+    return cards.length == 0 || 
+        ( colors = _.uniq(cards.map( (card) => card.color ))).length == 1 && colors[0] == color;
 }

@@ -50,12 +50,8 @@ module.exports = class Commands {
      * @param {Game} game
      */
     static play (card, player) {
-        if(player.playArea.isPlayValid(card)) {
-            player.playArea.play(card);
-            return true;
-        }
-        
-        return false;
+        player.removeCard(card);
+        return player.playArea.play(card);
     }
 
     static run(game, player, command) {

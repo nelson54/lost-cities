@@ -7,19 +7,10 @@ module.exports = class PlayArea {
         this.playStacksByColor = buildStackMap();
     }
 
-    playCard (card) {
-        this.getStack(card.color)
-            .add(card);
-    }
-
-    isPlayValid (card) {
+    play (card) {
         let stack = this.getStack(card.color);
-
-        if(!stack) {
-            throw new Error(`Card of color`);
-        }
-
-        return stack.validate(card);
+        stack.add(card);
+        return stack.isValid();
     }
 
     /**
