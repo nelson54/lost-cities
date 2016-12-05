@@ -2,9 +2,21 @@ angular.module('lost-cities-game')
 .controller('GameCtrl', function ($scope, $http, $window) {
     var game = this;
 
+    game.constants = {
+        WAITING_FOR_OPPONENT: 'waiting for a second player to join',
+        WAITING_ON_OPPONENT: 'waiting on the opponent\'s turn',
+        PHASE1: 'play or discard a card',
+        PHASE2: 'draw from the deck or discard pile',
+        GAME_ENDED: 'the game has ended'
+    };
+
     game.userId = $window.document.getElementById('userId').innerText;
     game.gameId = $window.document.getElementById('gameId').innerText;
 
+    let GET_GAME_STATE_API = "/api/games/"+game.gameId;
+    game.playerPhase = game.constants.WAITING_FOR_OPPONENT;
+    game.deck = [];
+    game.hand = [];
     game.colorStacks = [
         {
             color: 'Y',
@@ -33,22 +45,26 @@ angular.module('lost-cities-game')
         }
     ];
 
-    // TODO: flesh this out some more
-    let GET_GAME_STATE_API = "/api/games/"+game.gameId;
-    var gameData = null;
-    game.hand = null;
     $http.get(GET_GAME_STATE_API)
     .then(function success(res) {
-        gameData = res.data;
+        let gameData = res.data;
+        game.deck = gameData.deck;
+        if (gameData.currentPlayer) {
+            game.playerPhase = gameData.currentPlayer.id==game.userId?
+                game.constants.PHASE1 : game.constants.WAITING_ON_OPPONENT;
+        } else {
+            game.playerPhase = game.constants.GAME_ENDED;
+        }
+
+        // TODO: hardcode myself as the first player always for testing
+        //game.playerPhase = game.constants.PHASE1;
 
         game.hand = gameData.players.filter((player) => player.id == game.userId)[0].hand;
-        console.log("Current hand: %O", game.hand);
-
         game.colorStacks.forEach(
-            (stack) => stack.discardPile = gameData.players[0].playArea.playStacksByColor[stack.color]
+            (stack) => stack.discardPile = gameData.discardPiles[stack.color]
         );
     }, function failure() {
-        console.log("XHR failed!");
+        console.log("could not get current game state!");
     });
 
     game.initDragDrop = function () {
@@ -98,5 +114,22 @@ angular.module('lost-cities-game')
     game.clicked = function (card) {
         console.log(card);
         alert('you clicked card '+ card.color+card.number);
+    };
+
+    game.drawFromDeck = function () {
+        if (game.playerPhase != game.constants.PHASE2) {
+            alert(game.playerPhase);
+            return;
+        }
+
+        let cardDrawn = game.deck[game.deck.length - 1];
+        console.log("drew card %O", cardDrawn);
+        alert('you drew card '+ cardDrawn.color+cardDrawn.number);
+        // TODO: send the action to the game api
+    };
+
+    game.turns = [];
+    game.sendTurn = function () {
+        // TODO: complete this function after phase 2
     };
 });

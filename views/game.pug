@@ -16,10 +16,13 @@ block content
 
   .container(ng-app="lost-cities-game")
     h3.text-info Game ID# #{game_id}
-    h5#userId= user_id
-    h5#gameId= game_id
+    span#userId= user_id
+    span --
+    span#gameId= game_id
 
     .container(ng-controller="GameCtrl as game")
+      .row.text-center
+        h4 {{game.playerPhase}}
 
       #gameboard.row
         .col-md-2.lowpadding(ng-repeat="colorStack in game.colorStacks")
@@ -29,15 +32,23 @@ block content
 
             .panel(class="{{colorStack.class}}")
               .panel-body
-                .container.discard-pile {{colorStack.color}} discard pile
+                .container.discard-pile
+                  | {{colorStack.discardPile.length==0? 'empty discard pile' : colorStack.discardPile[colorStack.discardPile.length-1]}}
 
             .panel.player-cards(class="{{colorStack.class}}")
               .panel-heading Player Cards
 
         .col-md-2
           .panel.panel-primary
-            .panel-body
-              | Deck area
+            .panel-body.text-center
+              | DECK
+              hr
+              .row
+                .col-md-12 {{game.deck.length}} cards left
+              .row
+                .col-md-12
+                  // TODO: send a draw card request to the game api
+                  .btn.btn-primary.btn-block(ng-click="game.drawFromDeck()()") Draw
 
 
       #playerhand.row(style="padding-top: 165px")
