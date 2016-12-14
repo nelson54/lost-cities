@@ -47,15 +47,30 @@ module.exports = class Commands {
     /**
      * @param {Card} card
      * @param {Player} player
-     * @param {Game} game
      */
     static play (card, player) {
+        if(!player.hasCard(card)) {
+            throw new Error(`Players can only play cards they have in their hand (player: [${player.id}], card: [${card.toString()}])`);
+        }
+
+        if(!player.playArea.play(card)) {
+            throw new Error(`Cards must be played in order lowest to highest (player: [${player.id}], card: [${card.toString()}])`);
+        }
+
         player.removeCard(card);
-        return player.playArea.play(card);
     }
 
+    /**
+     * @param {Game} game
+     * @param {Player} player
+     * @param {Object} command
+     * @returns boolean
+     */
     static run(game, player, command) {
-        console.log('');
+        if(player.id != game.currentPlayer.id) {
+
+        }
+
         switch(command.action) {
             case 'discard':
                 return Commands.discard(command.card, player, game);

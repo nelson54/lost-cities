@@ -1,4 +1,3 @@
-let GameRepository = require('../repositories/game.repository');
 let generateDeck = require('./generate-deck');
 let seedShuffle = require('./shuffle-deck');
 let Command = require('./commands');
@@ -12,7 +11,7 @@ module.exports = class GameBuilder {
         let deck = generateDeck();
         deck = seedShuffle(deck, gameInfo._id);
 
-        var currentPlayer;
+        let currentPlayer;
         let players = gameInfo.players.map((id) => {
             let player = new Player(id);
             if (id == gameInfo.currentPlayer){
@@ -31,7 +30,7 @@ module.exports = class GameBuilder {
             .map((turn) => turn._doc)
             .forEach((turn) => {
                 turn.commands.forEach((command) => {
-                    Commands.run(game, game.currentPlayer, command._doc)
+                    Commands.run(game, game.currentPlayer, command)
                 })
             });
         return game;
@@ -41,5 +40,9 @@ module.exports = class GameBuilder {
         for(let i = 0; i < 8; i++) {
             Commands.draw(playerId, game);
         }
+    }
+
+    static create() {
+        return new GameBuilder();
     }
 };

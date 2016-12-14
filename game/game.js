@@ -13,9 +13,11 @@ module.exports = class Game {
     
     getPlayerById(id) {
         let player;
-        this.players.forEach( (p)=> { if(p.id == id) {
-            player = p;
-        }} );
+        this.players.forEach( (p)=> {
+            if(p.id == id) {
+                player = p;
+            }
+        } );
 
         return player;
     }

@@ -10,7 +10,11 @@ module.exports = class PlayArea {
     play (card) {
         let stack = this.getStack(card.color);
         stack.add(card);
-        return stack.isValid();
+        if(!stack.isValid()) {
+            stack.cards.pop();
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -20,7 +24,14 @@ module.exports = class PlayArea {
     getStack(color) {
         return this.playStacksByColor[color];
     }
-}
+
+    score() {
+        return Object
+            .values(this.playStacksByColor)
+            .map((stack) => stack.score())
+            .reduce((stackScore, totalScore) => totalScore + stackScore)
+    }
+};
 
 function buildStackMap() {
     let stackMap = {};

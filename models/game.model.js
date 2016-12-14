@@ -4,7 +4,6 @@ var gameSchema = mongoose.Schema({
     start: Date,
     finished: Date,
     open: Boolean,
-    seed: String,
     players: [String],
     turns: [
         {

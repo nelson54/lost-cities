@@ -3,9 +3,9 @@ let COLORS = require('./colors');
 let Card = require('./card');
 
 module.exports = function generateDeck () {
-    var cards = [];
+    let cards = [];
 
-    Object.values(COLORS)
+    _.values(COLORS)
         .forEach( (color) => generateColorCards(cards, color) );
     
     return cards;
