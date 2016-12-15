@@ -11,6 +11,7 @@ let gameInfo = {
 };
 
 describe('Commands', function() {
+
     describe('#run()', function() {
         it('should not execute for the non-current player', function() {
             let game = GameBuilder.create().buildGame(gameInfo);
@@ -19,8 +20,8 @@ describe('Commands', function() {
 
             assert.throws(
                 () => {Commands.run(game, player, command)},
-                Error,
-                'Players can only execute a command on their turn (player: [2], current player: [1])'
+                Error//,
+                //'Players can only execute a command on their turn (player: [2], current player: [1])'
             );
 
         });
@@ -99,12 +100,15 @@ describe('Commands', function() {
 
             assert.equal(8, player.hand.length);
 
-            assert(Commands.play(w5, player));
+            Commands.play(w5, player);
 
             assert.equal(7, player.hand.length);
             assert.equal(-15, player.playArea.score());
 
-            assert(!Commands.play(w2, player));
+            assert.throws(
+                ()=>{Commands.play(w2, player)},
+                Error
+            );
 
             assert.equal(-15, player.playArea.score());
         });
@@ -120,7 +124,7 @@ describe('Commands', function() {
             assert.equal(8, player.hand.length);
             assert.equal(0, discard.length);
 
-            assert(!Commands.play(w10, player));
+            assert.throws(()=>{Commands.play(w10, player)}, Error);
 
             assert.equal(8, player.hand.length);
             assert.equal(0, discard.length)

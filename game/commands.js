@@ -68,7 +68,7 @@ module.exports = class Commands {
      */
     static run(game, player, command) {
         if(player.id != game.currentPlayer.id) {
-
+            throw new Error(`Players can only execute a command on their turn (player: [${player.id}], current player: [${game.currentPlayer.id}])`);
         }
 
         switch(command.action) {
