@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var uuid = require('uuid/v4');
-var gameRepo = require('../repositories/game.repository');
-var GameBuilder = require('../game/game-builder');
-var Commands = require('../game/commands');
+
+let express = require('express');
+let router = express.Router();
+let uuid = require('uuid/v4');
+let gameRepo = require('../repositories/game.repository');
+let GameBuilder = require('../game/game-builder');
+let Commands = require('../game/commands');
 
 let gameBuilder = new GameBuilder();
 
@@ -16,14 +17,6 @@ router.param('id', function(req, res, next, value){
         } );
 });
 
-function set(req, name, value) {
-    if (req.query == null) {
-        req.query = {};
-    }
-
-    req.query[name] = value;
-}
-
 router.use('/', function(req, res, next) {
     if(req.query['exclude-player-id']) {
         req.excludePlayerId = req.query['exclude-player-id'];
@@ -33,6 +26,7 @@ router.use('/', function(req, res, next) {
     return next();
 });
 
+// get list of games
 router.get('/', function(req, res) {
     return gameRepo
         .find(req.query, req.excludePlayerId)
@@ -41,43 +35,58 @@ router.get('/', function(req, res) {
         });
 });
 
+router.put('/', function(req, res) {
+    console.dir(gameRepo);
+    console.dir(gameRepo.create);
+    console.dir(gameRepo.findOne);
+    gameRepo
+        .create(req.user.id)
+        .then( (game) => {
+            res.json({id: game._id})
+        });
+});
+
 /* GET home page. */
 router.get('/:id', function(req, res) {
     let game = gameBuilder
-        .buildGame(req.game._doc);
+        .buildGame(req.game);
 
     res.json(game);
 });
 
 router.post('/:id', function(req, res) {
-    var game = req.game;
+    let game = req.game;
     req.game.players.push(req.user.id);
 
     gameRepo
         .save(game)
         .then((game)=> {
-            res.json({gameId: game._doc._id.toString()})
+            res.json({gameId: game._id})
         })
 });
 
 router.post('/:id/turn', function(req, res) {
     let game = gameBuilder.buildGame(req.game._doc);
     let player = game.getPlayerById(req.user.id);
-    let success = true;
+    let turnError = false;
 
     req.body.commands.forEach((command) => {
-        if(!Commands.run(game, player, command)) {
-            success = false;
+        try {
+            Commands.run(game, player, command);
+        } catch (error) {
+            turnError = error;
         }
+
+
     });
 
-    if(success) {
+    if(!turnError) {
         req.game.turns.push(req.body);
         gameRepo
             .save(req.game)
             .then(() => res.json(game));
     } else {
-        res.json({ "Error": "Unable to execute turn." });
+        res.json(turnError);
     }
 });
 

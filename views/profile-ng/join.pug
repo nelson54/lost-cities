@@ -3,4 +3,7 @@ div
   a.btn.btn-primary(href='/profile/#/join') Join Game
   a.btn.btn-primary(href='/dashboard', id='dashboardButton') Dashboard
 
-p lul2
+  p {{games.length}}
+
+  div(ng-repeat="game in profile.games")
+    div {{game._id}}

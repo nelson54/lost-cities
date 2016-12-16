@@ -4,7 +4,7 @@ var matcher = /^([a-z])(x$|\d$|10$)/i;
 
 module.exports = class Card {
     constructor(number, color, isMultiplier) {
-        this.isMultiplier = isMultiplier;
+        this.isMultiplier = !!isMultiplier;
         this.number = number;
         this.color = color;
     }

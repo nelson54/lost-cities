@@ -6,13 +6,12 @@ module.exports = class Commands {
      * @param {Game} game
      */
     static discard (card, player, game) {
-        if (player.hasCard(card)){
-            player.removeCard(card);
-            game.discardPiles[card.color].push(card);
-            return true;
+        if (!player.hasCard(card)){
+            throw new Error(`Players cannot discard a card they do not have in their hand (player: [${player.id}], card: [${card.toString()}])`);
         }
 
-        return false;
+        player.removeCard(card);
+        game.discardPiles[card.color].push(card);
     }
 
     /**
@@ -22,7 +21,6 @@ module.exports = class Commands {
     static draw (player, game) {
         let card = game.deck.pop();
         player.hand.push(card);
-        //game.toggleCurrentPlayer();
 
         return true;
     }
@@ -34,14 +32,12 @@ module.exports = class Commands {
      */
     static drawFromDiscard (color, player, game) {
         if(game.discardPiles[color].length == 0) {
-            return false;
+            throw new Error(`Players can not draw from a discard pile without cards (player: [${player.id}], color: [${color}])`);
         }
         
         let card = game.discardPiles[color].pop();
         player.hand.push(card);
         //game.toggleCurrentPlayer();
-
-        return true;
     }
 
     /**
@@ -73,15 +69,18 @@ module.exports = class Commands {
 
         switch(command.action) {
             case 'discard':
-                return Commands.discard(command.card, player, game);
+                Commands.discard(command.card, player, game);
+                break;
             case 'draw':
-                return Commands.draw(player, game);
+                Commands.draw(player, game);
+                break;
             case 'drawFromDiscard':
-                return Commands.drawFromDiscard(command.card.color, player, game);
+                Commands.drawFromDiscard(command.card.color, player, game);
+                break;
             case 'play':
-                return Commands.play(command.card, player);
-            default:
-                return false;
+                Commands.play(command.card, player);
+                break;
         }
+        return true;
     }
 };

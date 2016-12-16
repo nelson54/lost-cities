@@ -1,24 +1,25 @@
 GameModel = require('../models/game.model');
-module.exports = {
+module.exports = class GamesRepository {
 
-    createGame: function(playerOneId) {
-        var game = new GameModel();
+    static create(playerId) {
+        let game = new GameModel();
         game.start = Date.now();
-        game.players = [playerOneId];
-        game.currentPlayer = playerOneId;
+        game.players = [playerId];
+        game.currentPlayer = playerId;
         game.open = true;
-        return game;
-    },
+        return GamesRepository
+            .save(game);
+    }
 
-    findOne: function(id) {
+    static findOne(id) {
         return GameModel.findById(id);
-    },
+    }
 
-    findAll: function(query) {
+    static findAll(query) {
         return GameModel.find();
-    },
+    }
     
-    find: function(query, excludePlayerId) {
+    static find(query, excludePlayerId) {
         let gameQuery = GameModel
             .find(query || {});
 
@@ -27,23 +28,23 @@ module.exports = {
         }
 
         return gameQuery;
-    },
+    }
     
-    findOpenGames: function() {
+    static findOpenGames() {
         return GameModel.find().where({'open': true})
-    },
+    }
 
-    count: function() {
+    static count() {
         var game = new GameModel();
         return game.count();
-    },
+    }
 
-    exists: function(seed) {
+    static exists(seed) {
         var game = new GameModel();
         return this.findOne(seed) ? true : false;
-    },
+    }
 
-    save: function(game) {
+    static save(game) {
         return game.save();
     }
 };
