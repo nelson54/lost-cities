@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "",
     "debug": "node ./bin/www",
-    "start": "nodemon -e jade,html,js ./bin/www"
+    "start": "nodemon -e jade,html,js ./bin/www",
+    "build-client": "webpack"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -27,6 +28,11 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "mocha": "^3.2.0"
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.24.1",
+    "mocha": "^3.2.0",
+    "webpack": "^2.5.0"
   }
 }

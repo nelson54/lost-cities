@@ -3,7 +3,7 @@ var router = express.Router();
 var uuid = require('uuid/v4');
 
 
-/* GET home page. */
+/*
 router.get('/', function(req, res, next) {
   res.redirect('/login');
 });
@@ -33,6 +33,11 @@ router.get('/game/:gameid', isLoggedIn, function(req, res) {
     user_id: req.user._id,
     game_id: req.params.gameid
   });
+});
+*/
+
+router.get('/', function(req, res) {
+    res.render('react', { title: 'Lost Cities' })
 });
 
 router.use('/view', require('./views'));
