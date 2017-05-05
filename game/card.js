@@ -1,6 +1,6 @@
 let _ = require('lodash');
 
-var matcher = /^([a-z])(x$|\d$|10$)/i;
+let matcher = /^([a-z])(x$|\d$|10$)/i;
 
 module.exports = class Card {
     constructor(number, color, isMultiplier) {

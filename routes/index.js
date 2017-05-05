@@ -42,6 +42,15 @@ router.get('/', function(req, res) {
 
 router.use('/view', require('./views'));
 
+router.get('/user', function(req, res, next) {
+    if (req.isAuthenticated()) {
+        res.json(req.user);
+    } else {
+        res.status = 401;
+        res.json({status: "Not Authenticated"});
+    }
+});
+
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on

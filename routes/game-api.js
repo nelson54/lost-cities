@@ -36,9 +36,7 @@ router.get('/', function(req, res) {
 });
 
 router.put('/', function(req, res) {
-    console.dir(gameRepo);
-    console.dir(gameRepo.create);
-    console.dir(gameRepo.findOne);
+
     gameRepo
         .create(req.user.id)
         .then( (game) => {
@@ -46,7 +44,6 @@ router.put('/', function(req, res) {
         });
 });
 
-/* GET home page. */
 router.get('/:id', function(req, res) {
     let game = gameBuilder
         .buildGame(req.game);
